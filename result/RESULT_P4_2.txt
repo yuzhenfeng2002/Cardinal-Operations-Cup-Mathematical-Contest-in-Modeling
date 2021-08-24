@@ -1,0 +1,77 @@
+Using license file /Users/fxb/gurobi.lic
+Changed value of parameter lazyConstraints to 1
+   Prev: 0  Min: 0  Max: 1  Default: 0
+Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (mac64)
+Thread count: 2 physical cores, 4 logical processors, using up to 4 threads
+Optimize a model with 171 rows, 129 columns and 722 nonzeros
+Model fingerprint: 0x4b1461f9
+Variable types: 1 continuous, 128 integer (128 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 6e+01]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Found heuristic solution: objective 152.2913334
+Presolve removed 88 rows and 16 columns
+Presolve time: 0.00s
+Presolved: 83 rows, 113 columns, 534 nonzeros
+Variable types: 1 continuous, 112 integer (112 binary)
+
+Root relaxation: objective 7.839200e+01, 43 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   78.39200    0   18  152.29133   78.39200  48.5%     -    0s
+H    0     0                     111.1733333   78.39200  29.5%     -    0s
+     0     0   80.09400    0   18  111.17333   80.09400  28.0%     -    0s
+     0     0   82.77900    0   14  111.17333   82.77900  25.5%     -    0s
+     0     0   82.77900    0   18  111.17333   82.77900  25.5%     -    0s
+H    0     0                     107.3240000   82.77900  22.9%     -    0s
+     0     0   82.94006    0   27  107.32400   82.94006  22.7%     -    0s
+     0     0   82.94006    0   26  107.32400   82.94006  22.7%     -    0s
+     0     0   82.94006    0   23  107.32400   82.94006  22.7%     -    0s
+     0     0   83.10111    0   25  107.32400   83.10111  22.6%     -    0s
+H    0     0                     100.0966667   83.10111  17.0%     -    0s
+     0     0   83.10111    0   27  100.09667   83.10111  17.0%     -    0s
+     0     0   83.10111    0   23  100.09667   83.10111  17.0%     -    0s
+     0     0   83.10111    0   23  100.09667   83.10111  17.0%     -    0s
+     0     0   83.10111    0   23  100.09667   83.10111  17.0%     -    0s
+H    0     0                      90.8700000   83.10111  8.55%     -    0s
+     0     0   83.74533    0   18   90.87000   83.74533  7.84%     -    0s
+     0     0   83.74533    0   20   90.87000   83.74533  7.84%     -    0s
+     0     0   83.74533    0   22   90.87000   83.74533  7.84%     -    0s
+     0     0   83.74533    0   17   90.87000   83.74533  7.84%     -    0s
+     0     0   83.74533    0   22   90.87000   83.74533  7.84%     -    0s
+     0     0   83.74533    0   18   90.87000   83.74533  7.84%     -    0s
+     0     0   83.74533    0   18   90.87000   83.74533  7.84%     -    0s
+     0     2   83.74533    0   18   90.87000   83.74533  7.84%     -    0s
+
+Cutting planes:
+  Gomory: 2
+  Cover: 1
+  MIR: 3
+  Zero half: 11
+  RLT: 13
+
+Explored 91 nodes (834 simplex iterations) in 0.12 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 5: 90.87 100.097 107.324 ... 152.291
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 9.087000000000e+01, best bound 9.087000000000e+01, gap 0.0000%
+
+User-callback calls 380, time in user-callback 0.01 sec
+<gurobi.Var x[0,4,1] (value 1.0)>
+<gurobi.Var x[1,0,1] (value 1.0)>
+<gurobi.Var x[2,3,1] (value 1.0)>
+<gurobi.Var x[3,5,1] (value 1.0)>
+<gurobi.Var x[4,2,1] (value 1.0)>
+<gurobi.Var x[4,7,0] (value 1.0)>
+<gurobi.Var x[5,1,1] (value 1.0)>
+<gurobi.Var x[6,4,0] (value 1.0)>
+<gurobi.Var x[7,6,0] (value 1.0)>
+<gurobi.Var d (value 90.87)>
+
+Process finished with exit code 0

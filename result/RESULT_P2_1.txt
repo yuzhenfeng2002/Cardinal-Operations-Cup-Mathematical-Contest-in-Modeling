@@ -1,0 +1,78 @@
+Changed value of parameter lazyConstraints to 1
+   Prev: 0  Min: 0  Max: 1  Default: 0
+Gurobi Optimizer version 9.1.2 build v9.1.2rc0 (mac64)
+Thread count: 2 physical cores, 4 logical processors, using up to 4 threads
+Optimize a model with 990 rows, 883 columns and 5210 nonzeros
+Model fingerprint: 0x583e532c
+Variable types: 1 continuous, 882 integer (882 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 504 rows and 42 columns
+Presolve time: 0.01s
+Presolved: 486 rows, 841 columns, 4126 nonzeros
+Variable types: 1 continuous, 840 integer (840 binary)
+
+Root relaxation: objective 2.659978e+02, 171 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  265.99781    0   44          -  265.99781      -     -    0s
+     0     0  289.44214    0   26          -  289.44214      -     -    0s
+     0     0  290.92081    0   32          -  290.92081      -     -    0s
+     0     0  290.92081    0   38          -  290.92081      -     -    0s
+     0     0  290.92081    0   19          -  290.92081      -     -    0s
+     0     2  290.92081    0   19          -  290.92081      -     -    0s
+*  401   314             211     335.7173333  305.17131  9.10%   4.8    0s
+H  483   237                     319.0482833  305.27181  4.32%   5.5    0s
+H 1626   531                     319.0482810  310.84598  2.57%  10.9    3s
+H 1686   521                     319.0482565  310.91765  2.55%  10.9    3s
+H 2958   741                     319.0482491  312.49983  2.05%  11.8    3s
+  5298  1400  313.93393   62   30  319.04825  313.69657  1.68%  11.7    5s
+
+Cutting planes:
+  Gomory: 8
+  StrongCG: 1
+  Flow cover: 4
+  Inf proof: 2
+  Zero half: 24
+  RLT: 13
+  Lazy constraints: 4
+
+Explored 20200 nodes (228082 simplex iterations) in 9.21 seconds
+Thread count was 4 (of 4 available processors)
+
+Solution count 3: 319.048 319.048 335.717 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 3.190482491324e+02, best bound 3.190482491324e+02, gap 0.0000%
+
+User-callback calls 42997, time in user-callback 0.24 sec
+<gurobi.Var x[0,1,0] (value 1.0)>
+<gurobi.Var x[1,4,0] (value 1.0)>
+<gurobi.Var x[2,10,0] (value 1.0)>
+<gurobi.Var x[3,2,0] (value 1.0)>
+<gurobi.Var x[4,5,0] (value 1.0)>
+<gurobi.Var x[4,9,1] (value 1.0)>
+<gurobi.Var x[5,3,0] (value 1.0)>
+<gurobi.Var x[6,4,1] (value 0.999999548684781)>
+<gurobi.Var x[7,19,1] (value 1.0)>
+<gurobi.Var x[8,18,1] (value 1.0)>
+<gurobi.Var x[9,8,1] (value 1.0)>
+<gurobi.Var x[10,11,0] (value 1.0)>
+<gurobi.Var x[11,12,0] (value 1.0)>
+<gurobi.Var x[12,13,0] (value 1.0)>
+<gurobi.Var x[13,14,0] (value 1.0)>
+<gurobi.Var x[14,0,0] (value 1.0)>
+<gurobi.Var x[15,7,1] (value 1.0)>
+<gurobi.Var x[16,15,1] (value 1.0)>
+<gurobi.Var x[17,16,1] (value 1.0)>
+<gurobi.Var x[18,17,1] (value 1.0)>
+<gurobi.Var x[19,20,1] (value 0.9999995467761923)>
+<gurobi.Var x[20,6,1] (value 0.9999995482047637)>
+<gurobi.Var d (value 319.0482491324356)>
+
+Process finished with exit code 0

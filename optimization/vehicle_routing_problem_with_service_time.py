@@ -12,6 +12,7 @@ MAX = 1e5
 f = open("../data/distance", mode="rb")
 distance = pickle.load(f)
 f.close()
+node_time = [9.03,1.8,7.32,7.36,4.2,7.2,15.35,7.52,7.56,15.42815,5.73,7.68,4.2,25.4,25.5,12,12.2008,25.8,15,24.948,5.67]
 node_list = list(range(ORIGIN_IDX - 1)) + list(range(ORIGIN_IDX, V_NUM))
 dist = {(i, j, k): distance[i][j] for i in range(V_NUM) for j in range(V_NUM) for k in range(K_NUM)}
 dict_linear = {(i, j, k): i*V_NUM*K_NUM + j*K_NUM + k for i in range(V_NUM) for j in range(V_NUM) for k in range(K_NUM)}
@@ -32,7 +33,7 @@ MODEL.setObjective(d, GRB.MINIMIZE)
 MODEL.addConstrs(quicksum(x[i, j, k] for j in range(V_NUM) for k in range(K_NUM)) == 1 for i in node_list)
 MODEL.addConstrs(quicksum(x[i, j, k] for j in range(V_NUM)) - quicksum(x[j, i, k] for j in range(V_NUM)) == 0 for i in range(V_NUM) for k in range(K_NUM))
 MODEL.addConstrs(quicksum(x[ORIGIN_IDX - 1, j, k] for j in range(V_NUM)) == 1 for k in range(K_NUM))
-MODEL.addConstrs(d - quicksum(distance[i][j] / 1.5 * x[i, j, k] for i in range(V_NUM) for j in range(V_NUM)) >= 0 for k in range(K_NUM))
+MODEL.addConstrs(d - quicksum(distance[i][j] / 1.5 * x[i, j, k] + node_time[j] * x[i, j, k] for i in range(V_NUM) for j in range(V_NUM)) >= 0 for k in range(K_NUM))
 MODEL.addConstrs(x[i, i, k] == 0 for i in range(V_NUM) for k in range(K_NUM))
 MODEL.addConstrs(x[i, j, k] + x[j, i, k] <= 1 for i in range(V_NUM) for j in range(V_NUM) for k in range(K_NUM))
 

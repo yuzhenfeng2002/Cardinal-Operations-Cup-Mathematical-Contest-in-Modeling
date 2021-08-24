@@ -14,7 +14,6 @@ distance = pickle.load(f)
 f.close()
 dist = {(i, j, k): distance[i][j] for i in range(V_NUM) for j in range(V_NUM) for k in range(K_NUM)}
 dict_linear = {(i, j, k): i*V_NUM*K_NUM + j*K_NUM + k for i in range(V_NUM) for j in range(V_NUM) for k in range(K_NUM)}
-dict_3d = mi = dict(zip(dict_linear.values(), dict_linear.keys()))
 
 # callback - use lazy constraints to eliminate sub-tours
 def mycallback(model, where):

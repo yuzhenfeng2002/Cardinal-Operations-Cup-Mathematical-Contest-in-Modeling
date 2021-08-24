@@ -12,8 +12,29 @@ MAX = 1e5
 f = open("../data/distance", mode="rb")
 distance = pickle.load(f)
 f.close()
-node_list = list(range(ORIGIN_IDX - 1)) + list(range(ORIGIN_IDX, V_NUM))
-dist = {(i, j, k): distance[i][j] for i in range(V_NUM) for j in range(V_NUM) for k in range(K_NUM)}
+node_time = [9.03,1.8,7.32,7.36,4.2,7.2,15.35,7.52,7.56,15.42815,5.73,7.68,4.2,25.4,25.5,12,12.2008,25.8,15,24.948,5.67]
+
+# failure occurrence
+# V_left = [1, 2, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+V_left = [1, 2, 5, 9, 10, 15, 16]
+M_IDX = V_left.index(16) + 1
+N_IDX = V_left.index(15) + 1
+ORIGIN_IDX = V_left.index(ORIGIN_IDX) + 1
+SERVICE_TIME = 600
+
+V_left = [e-1 for e in V_left]
+V_NUM = len(V_left)
+V_l_0 = list(range(V_NUM))
+V_l_0.remove(ORIGIN_IDX - 1)
+V_l_0_m_n = list(range(V_NUM))
+V_l_0_m_n.remove(M_IDX - 1)
+V_l_0_m_n.remove(N_IDX - 1)
+V_l_0_m_n.remove(ORIGIN_IDX - 1)
+V_l_m_n = list(range(V_NUM))
+V_l_m_n.remove(M_IDX - 1)
+V_l_m_n.remove(N_IDX - 1)
+
+dist = {(i, j, k): distance[V_left[i]][V_left[j]] for i in range(V_NUM) for j in range(V_NUM) for k in range(K_NUM)}
 dict_linear = {(i, j, k): i*V_NUM*K_NUM + j*K_NUM + k for i in range(V_NUM) for j in range(V_NUM) for k in range(K_NUM)}
 
 # create a model
@@ -29,12 +50,15 @@ MODEL.update()
 MODEL.setObjective(d, GRB.MINIMIZE)
 
 # add constraints
-MODEL.addConstrs(quicksum(x[i, j, k] for j in range(V_NUM) for k in range(K_NUM)) == 1 for i in node_list)
-MODEL.addConstrs(quicksum(x[i, j, k] for j in range(V_NUM)) - quicksum(x[j, i, k] for j in range(V_NUM)) == 0 for i in range(V_NUM) for k in range(K_NUM))
-MODEL.addConstrs(quicksum(x[ORIGIN_IDX - 1, j, k] for j in range(V_NUM)) == 1 for k in range(K_NUM))
-MODEL.addConstrs(d - quicksum(distance[i][j] / 1.5 * x[i, j, k] for i in range(V_NUM) for j in range(V_NUM)) >= 0 for k in range(K_NUM))
+MODEL.addConstrs(quicksum(x[i, j, k] for j in range(V_NUM) for k in range(K_NUM)) == 1 for i in V_l_0)
+MODEL.addConstrs(quicksum(x[i, j, k] for j in range(V_NUM)) - quicksum(x[j, i, k] for j in range(V_NUM)) == 0 for i in V_l_0_m_n for k in range(K_NUM))
+MODEL.addConstr(quicksum(x[i, j, k] for i in range(V_NUM) for j in [M_IDX - 1, N_IDX - 1] for k in range(K_NUM)) == 0)
+MODEL.addConstrs(d - SERVICE_TIME * quicksum(x[M_IDX - 1, j, k] for j in range(V_NUM))
+                 - quicksum(distance[V_left[i]][V_left[j]] / 1.5 * x[i, j, k]
+                            + node_time[V_left[j]] * x[i, j, k] for i in range(V_NUM) for j in range(V_NUM)) >= 0 for k in range(K_NUM))
 MODEL.addConstrs(x[i, i, k] == 0 for i in range(V_NUM) for k in range(K_NUM))
 MODEL.addConstrs(x[i, j, k] + x[j, i, k] <= 1 for i in range(V_NUM) for j in range(V_NUM) for k in range(K_NUM))
+# MODEL.addConstr(quicksum(x[i, ORIGIN_IDX - 1, k] for i in range(V_NUM) for k in range(K_NUM)) == 2)
 
 # callback - use lazy constraints to eliminate sub-tours
 def mycallback(model, where):
